@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { BackButton } from "@/components/back-button";
 import { CategoryBadge } from "@/components/category-badge";
 import { MarkdownContent } from "@/components/markdown-content";
+import { PostCard } from "@/components/post-card";
 import { ShareButton } from "@/components/share-button";
 import { getCategoryMap } from "@/lib/supabase/get-category-map";
 import { createClient } from "@/lib/supabase/server";
@@ -63,6 +64,15 @@ export default async function PostPage({ params }: Props) {
 
   if (!post || error) notFound();
 
+  // Busca posts relacionados da mesma categoria
+  const { data: relatedPosts } = await supabase
+    .from("posts")
+    .select("id, title, slug, meta_description, image, category, created_at")
+    .eq("category", post.category)
+    .neq("slug", slug)
+    .order("created_at", { ascending: false })
+    .limit(3);
+
   const formattedDate = new Date(post.created_at).toLocaleString("en-US", {
     month: "short",
     day: "numeric",
@@ -101,7 +111,6 @@ export default async function PostPage({ params }: Props) {
             <span className="mx-1">·</span>
             <time dateTime={post.created_at}>{formattedDate}</time>
           </div>
-
           <ShareButton title={post.title ?? ""} url={postUrl} />
         </div>
       </header>
@@ -120,6 +129,23 @@ export default async function PostPage({ params }: Props) {
       )}
 
       <MarkdownContent content={post.content ?? ""} />
+
+      {relatedPosts && relatedPosts.length > 0 && (
+        <section className="mt-16 pt-8 border-t border-border">
+          <h2 className="text-xl font-semibold text-foreground mb-6">
+            Related posts
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {relatedPosts.map((related) => (
+              <PostCard
+                key={related.id}
+                post={related}
+                categoryMap={categoryMap}
+              />
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
