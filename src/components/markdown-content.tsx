@@ -1,4 +1,3 @@
-// src/components/post-content.tsx
 "use client";
 
 import ReactMarkdown from "react-markdown";

@@ -7,22 +7,29 @@ interface Props {
 
 export function PostList({ posts, categoryMap }: Props) {
   if (posts.length === 0) {
-    return (
-      <p className="text-sm text-muted-foreground">Nenhum post encontrado.</p>
-    );
+    return <p className="text-sm text-muted-foreground">No posts found.</p>;
   }
 
+  const [first, ...rest] = posts;
+
   return (
-    <ul className="flex flex-col gap-8">
-      {posts.map((post, index) => (
-        <li key={post.id}>
-          <PostCard
-            post={post}
-            categoryMap={categoryMap}
-            priority={index === 0}
-          />
-        </li>
-      ))}
-    </ul>
+    <div className="flex flex-col gap-8">
+      {/* First post — full width */}
+      <PostCard
+        post={first}
+        categoryMap={categoryMap}
+        priority={true}
+        featured
+      />
+
+      {/* Remaining posts — 2 columns on desktop */}
+      {rest.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {rest.map((post) => (
+            <PostCard key={post.id} post={post} categoryMap={categoryMap} />
+          ))}
+        </div>
+      )}
+    </div>
   );
 }

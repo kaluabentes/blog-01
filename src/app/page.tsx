@@ -1,5 +1,6 @@
 import { PostPagination } from "@/components/pagination";
 import { PostList } from "@/components/post-list";
+import BlogLayout from "@/layouts/blog-layout";
 import { getCategoryMap } from "@/lib/supabase/getCategoryMap";
 import { createClient } from "@/lib/supabase/server";
 
@@ -34,13 +35,15 @@ export default async function HomePage({ searchParams }: Props) {
   if (error) throw new Error(error.message);
 
   return (
-    <main className="max-w-3xl mx-auto px-4 py-12">
-      <PostList posts={posts ?? []} categoryMap={categoryMap} />
-      <PostPagination
-        currentPage={currentPage}
-        totalPages={Math.ceil((count ?? 0) / PER_PAGE)}
-        basePath="/"
-      />
-    </main>
+    <BlogLayout>
+      <main className="max-w-4xl mx-auto px-4 py-12">
+        <PostList posts={posts ?? []} categoryMap={categoryMap} />
+        <PostPagination
+          currentPage={currentPage}
+          totalPages={Math.ceil((count ?? 0) / PER_PAGE)}
+          basePath="/"
+        />
+      </main>
+    </BlogLayout>
   );
 }
