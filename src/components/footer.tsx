@@ -1,6 +1,10 @@
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import Link from "next/link";
 
+import { NAME } from "@/config/general";
+
+import { Logo } from "./logo";
+
 interface Category {
   name: string;
   slug: string;
@@ -20,12 +24,10 @@ export function Footer({ categories, pages }: Props) {
   return (
     <footer className="bg-primary text-primary-foreground mt-16">
       <div className="max-w-6xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Brand */}
           <div>
-            <Link href="/" className="font-bold text-xl tracking-tight">
-              BLOG
-            </Link>
+            <Logo />
             <p className="text-sm text-primary-foreground/60 mt-3 leading-relaxed">
               Quality content about the topics that matter most to you.
             </p>
@@ -48,50 +50,52 @@ export function Footer({ categories, pages }: Props) {
           </div>
 
           {/* Navigation */}
-          <div>
-            <h3 className="text-sm font-semibold mb-4">Navigation</h3>
-            <ul className="flex flex-col gap-2">
-              <li>
-                <Link
-                  href="/"
-                  className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
-                >
-                  Home
-                </Link>
-              </li>
-              {categories.map((cat) => (
-                <li key={cat.slug}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div>
+              <h3 className="text-sm font-semibold mb-4">Navigation</h3>
+              <ul className="flex flex-col gap-2">
+                <li>
                   <Link
-                    href={`/category/${cat.slug}`}
+                    href="/"
                     className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
                   >
-                    {cat.name}
+                    Home
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </div>
+                {categories.map((cat) => (
+                  <li key={cat.slug}>
+                    <Link
+                      href={`/category/${cat.slug}`}
+                      className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
+                    >
+                      {cat.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Company — from Supabase pages */}
-          <div>
-            <h3 className="text-sm font-semibold mb-4">Company</h3>
-            <ul className="flex flex-col gap-2">
-              {pages.map((page) => (
-                <li key={page.slug}>
-                  <Link
-                    href={`/${page.slug}`}
-                    className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
-                  >
-                    {page.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            {/* Company — from Supabase pages */}
+            <div>
+              <h3 className="text-sm font-semibold mb-4">Company</h3>
+              <ul className="flex flex-col gap-2">
+                {pages.map((page) => (
+                  <li key={page.slug}>
+                    <Link
+                      href={`/${page.slug}`}
+                      className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
+                    >
+                      {page.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
         <div className="border-t border-primary-foreground/10 mt-10 pt-6 text-xs text-primary-foreground/40 text-center">
-          © {new Date().getFullYear()} Blog. All rights reserved.
+          © {new Date().getFullYear()} {NAME}. All rights reserved.
         </div>
       </div>
     </footer>

@@ -1,6 +1,7 @@
 import { PageHeader } from "@/components/page-header";
 import { PostPagination } from "@/components/pagination";
 import { PostList } from "@/components/post-list";
+import { CATEGORY_TAGLINE, NAME } from "@/config/general";
 import { getCategoryMap } from "@/lib/supabase/get-category-map";
 import { createClient } from "@/lib/supabase/server";
 
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: Props) {
   const categoryMap = await getCategoryMap();
   const name = categoryMap[slug] ?? slug;
 
-  return { title: `Categoria: ${name}` };
+  return { title: `${name} - ${CATEGORY_TAGLINE} | ${NAME}` };
 }
 
 export default async function CategoryPage({ params, searchParams }: Props) {

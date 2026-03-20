@@ -6,6 +6,9 @@ import { usePathname } from "next/navigation";
 import { Menu, Search, X } from "lucide-react";
 
 import { SearchDialog } from "@/components/search-dialog";
+import { NAME } from "@/config/general";
+
+import { Logo } from "./logo";
 
 interface Category {
   name: string;
@@ -28,7 +31,7 @@ export function Header({ categories, categoryMap }: Props) {
     <>
       <header className="bg-primary text-primary-foreground sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
-          <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+          <button className="xl:hidden" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? (
               <X className="w-5 h-5" />
             ) : (
@@ -36,11 +39,9 @@ export function Header({ categories, categoryMap }: Props) {
             )}
           </button>
 
-          <Link href="/" className="font-bold text-xl tracking-tight shrink-0">
-            BLOG
-          </Link>
+          <Logo />
 
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+          <nav className="hidden xl:flex items-center gap-6 text-sm font-medium">
             <Link
               href="/"
               className={`transition-opacity ${
@@ -76,7 +77,7 @@ export function Header({ categories, categoryMap }: Props) {
         </div>
 
         {menuOpen && (
-          <div className="md:hidden border-t border-primary-foreground/20">
+          <div className="xl:hidden border-t border-primary-foreground/20">
             <nav className="flex flex-col px-4 py-2">
               <Link
                 href="/"

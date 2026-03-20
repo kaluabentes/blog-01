@@ -30,14 +30,14 @@ export async function generateMetadata({ params }: Props) {
     title: post.title,
     description: post.meta_description,
     openGraph: {
-      title: post.title ?? "",
+      title: post.title,
       description: post.meta_description ?? "",
       images: post.image ? [{ url: post.image, width: 1200, height: 630 }] : [],
       type: "article",
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title ?? "",
+      title: post.title,
       description: post.meta_description ?? "",
       images: post.image ? [post.image] : [],
     },
