@@ -14,9 +14,13 @@ export function PostList({ posts, categoryMap }: Props) {
 
   return (
     <ul className="flex flex-col gap-8">
-      {posts.map((post) => (
+      {posts.map((post, index) => (
         <li key={post.id}>
-          <PostCard post={post} categoryMap={categoryMap} />
+          <PostCard
+            post={post}
+            categoryMap={categoryMap}
+            priority={index === 0}
+          />
         </li>
       ))}
     </ul>

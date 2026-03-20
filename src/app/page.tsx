@@ -1,5 +1,4 @@
-import { PageHeader } from "@/components/page-header";
-import { Pagination } from "@/components/pagination";
+import { PostPagination } from "@/components/pagination";
 import { PostList } from "@/components/post-list";
 import { getCategoryMap } from "@/lib/supabase/getCategoryMap";
 import { createClient } from "@/lib/supabase/server";
@@ -36,9 +35,8 @@ export default async function HomePage({ searchParams }: Props) {
 
   return (
     <main className="max-w-3xl mx-auto px-4 py-12">
-      <PageHeader title="Blog" />
       <PostList posts={posts ?? []} categoryMap={categoryMap} />
-      <Pagination
+      <PostPagination
         currentPage={currentPage}
         totalPages={Math.ceil((count ?? 0) / PER_PAGE)}
         basePath="/"

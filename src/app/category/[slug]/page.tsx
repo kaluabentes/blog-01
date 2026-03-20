@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { PageHeader } from "@/components/page-header";
-import { Pagination } from "@/components/pagination";
+import { PostPagination } from "@/components/pagination";
 import { PostList } from "@/components/post-list";
 import { getCategoryMap } from "@/lib/supabase/getCategoryMap";
 import { createClient } from "@/lib/supabase/server";
@@ -58,10 +58,10 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         backHref="/"
       />
       <PostList posts={posts ?? []} categoryMap={categoryMap} />
-      <Pagination
+      <PostPagination
         currentPage={currentPage}
         totalPages={Math.ceil((count ?? 0) / PER_PAGE)}
-        basePath={`/categoria/${slug}`}
+        basePath={`/category/${slug}`}
       />
     </main>
   );

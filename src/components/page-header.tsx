@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 interface Props {
   title: string;
@@ -11,15 +12,16 @@ export function PageHeader({
   title,
   description,
   backHref,
-  backLabel = "← Voltar",
+  backLabel = "Voltar",
 }: Props) {
   return (
     <div className="mb-10">
       {backHref && (
         <Link
           href={backHref}
-          className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold  transition-colors"
         >
+          <ArrowLeft className="w-4 h-4" />
           {backLabel}
         </Link>
       )}

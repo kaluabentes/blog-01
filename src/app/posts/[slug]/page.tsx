@@ -2,6 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { CategoryBadge } from "@/components/category-badge";
+import { MarkdownContent } from "@/components/markdown-content";
 import { getCategoryMap } from "@/lib/supabase/getCategoryMap";
 import { createClient } from "@/lib/supabase/server";
 
@@ -37,16 +38,17 @@ export default async function PostPage({ params }: Props) {
 
   if (!post || error) notFound();
 
-  const formattedDate = new Date(post.created_at).toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "2-digit",
-    hour: "2-digit",
+  const formattedDate = new Date(post.created_at).toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
     minute: "2-digit",
+    hour12: true,
   });
 
   return (
-    <main className="max-w-2xl mx-auto px-4 py-12">
+    <main className="w-full max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
       <header className="mb-6">
         {post.category && (
           <CategoryBadge
@@ -56,12 +58,12 @@ export default async function PostPage({ params }: Props) {
           />
         )}
 
-        <h1 className="text-3xl font-bold leading-tight mb-4 text-foreground">
+        <h1 className="text-2xl sm:text-3xl font-bold leading-tight mb-4 text-foreground">
           {post.title}
         </h1>
 
         {post.meta_description && (
-          <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-4">
             {post.meta_description}
           </p>
         )}
@@ -74,22 +76,19 @@ export default async function PostPage({ params }: Props) {
       </header>
 
       {post.image && (
-        <div className="relative w-full h-72 mb-8">
+        <div className="relative w-full h-52 sm:h-72 mb-8">
           <Image
             src={post.image}
             alt={post.title ?? ""}
             fill
-            sizes="(max-width: 768px) 100vw, 672px"
+            sizes="(max-width: 640px) 100vw, 672px"
             className="object-cover rounded-xl"
             priority
           />
         </div>
       )}
 
-      <article
-        className="prose prose-neutral dark:prose-invert max-w-none"
-        dangerouslySetInnerHTML={{ __html: post.content ?? "" }}
-      />
+      <MarkdownContent content={post.content ?? ""} />
     </main>
   );
 }

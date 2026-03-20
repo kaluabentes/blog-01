@@ -16,9 +16,10 @@ export interface Post {
 interface Props {
   post: Post;
   categoryMap?: Record<string, string>;
+  priority?: boolean;
 }
 
-export function PostCard({ post, categoryMap }: Props) {
+export function PostCard({ post, categoryMap, priority = false }: Props) {
   if (!post.slug) return null;
 
   return (
@@ -32,6 +33,7 @@ export function PostCard({ post, categoryMap }: Props) {
               fill
               sizes="(max-width: 768px) 100vw, 768px"
               className="object-cover rounded-lg"
+              priority={priority}
             />
           </div>
         )}
