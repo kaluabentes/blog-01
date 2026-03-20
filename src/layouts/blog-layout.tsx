@@ -14,16 +14,17 @@ export default async function BlogLayout({
   children: React.ReactNode;
 }) {
   const supabase = await createClient();
-  const { data: categories } = await supabase
-    .from("categories")
-    .select("name, slug")
-    .order("name");
+
+  const [{ data: categories }, { data: pages }] = await Promise.all([
+    supabase.from("categories").select("name, slug").order("name"),
+    supabase.from("pages").select("title, slug").order("title"),
+  ]);
 
   return (
     <>
       <Header categories={categories ?? []} />
       {children}
-      <Footer categories={categories ?? []} />
+      <Footer categories={categories ?? []} pages={pages ?? []} />
     </>
   );
 }

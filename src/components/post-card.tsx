@@ -4,15 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export interface Post {
-  id: number;
-  title: string | null;
-  slug: string | null;
-  meta_description: string | null;
-  image: string | null;
-  category: string | null;
-  created_at: string;
-}
+import { Post } from "@/models/Post";
 
 interface Props {
   post: Post;

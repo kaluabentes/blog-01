@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, Search, X } from "lucide-react";
 
 interface Category {
@@ -15,6 +16,9 @@ interface Props {
 
 export function Header({ categories }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (slug: string) => pathname === `/category/${slug}`;
 
   return (
     <header className="bg-primary text-primary-foreground sticky top-0 z-50">
@@ -28,14 +32,25 @@ export function Header({ categories }: Props) {
         </Link>
 
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          <Link href="/" className="hover:opacity-70 transition-opacity">
+          <Link
+            href="/"
+            className={`transition-opacity ${
+              pathname === "/"
+                ? "opacity-100 underline underline-offset-4"
+                : "opacity-70 hover:opacity-100"
+            }`}
+          >
             Home
           </Link>
           {categories.map((cat) => (
             <Link
               key={cat.slug}
               href={`/category/${cat.slug}`}
-              className="hover:opacity-70 transition-opacity"
+              className={`transition-opacity ${
+                isActive(cat.slug)
+                  ? "opacity-100 underline underline-offset-4"
+                  : "opacity-70 hover:opacity-100"
+              }`}
             >
               {cat.name}
             </Link>
@@ -53,7 +68,11 @@ export function Header({ categories }: Props) {
             <Link
               href="/"
               onClick={() => setMenuOpen(false)}
-              className="flex items-center justify-between py-4 border-b border-primary-foreground/10 text-sm font-medium hover:opacity-70 transition-opacity"
+              className={`flex items-center justify-between py-4 border-b border-primary-foreground/10 text-sm font-medium transition-opacity ${
+                pathname === "/"
+                  ? "opacity-100"
+                  : "opacity-70 hover:opacity-100"
+              }`}
             >
               Home
               <span className="opacity-50">›</span>
@@ -63,7 +82,11 @@ export function Header({ categories }: Props) {
                 key={cat.slug}
                 href={`/category/${cat.slug}`}
                 onClick={() => setMenuOpen(false)}
-                className="flex items-center justify-between py-4 border-b border-primary-foreground/10 text-sm font-medium hover:opacity-70 transition-opacity"
+                className={`flex items-center justify-between py-4 border-b border-primary-foreground/10 text-sm font-medium transition-opacity ${
+                  isActive(cat.slug)
+                    ? "opacity-100"
+                    : "opacity-70 hover:opacity-100"
+                }`}
               >
                 {cat.name}
                 <span className="opacity-50">›</span>

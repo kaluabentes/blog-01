@@ -6,15 +6,22 @@ interface Category {
   slug: string;
 }
 
-interface Props {
-  categories: Category[];
+interface Page {
+  title: string;
+  slug: string;
 }
 
-export function Footer({ categories }: Props) {
+interface Props {
+  categories: Category[];
+  pages: Page[];
+}
+
+export function Footer({ categories, pages }: Props) {
   return (
     <footer className="bg-primary text-primary-foreground mt-16">
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {/* Brand */}
           <div>
             <Link href="/" className="font-bold text-xl tracking-tight">
               BLOG
@@ -40,6 +47,7 @@ export function Footer({ categories }: Props) {
             </div>
           </div>
 
+          {/* Navigation */}
           <div>
             <h3 className="text-sm font-semibold mb-4">Navigation</h3>
             <ul className="flex flex-col gap-2">
@@ -64,21 +72,20 @@ export function Footer({ categories }: Props) {
             </ul>
           </div>
 
+          {/* Company — from Supabase pages */}
           <div>
             <h3 className="text-sm font-semibold mb-4">Company</h3>
             <ul className="flex flex-col gap-2">
-              {["About Us", "Editorial Team", "Contact", "Privacy Policy"].map(
-                (item) => (
-                  <li key={item}>
-                    <Link
-                      href="#"
-                      className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                ),
-              )}
+              {pages.map((page) => (
+                <li key={page.slug}>
+                  <Link
+                    href={`/${page.slug}`}
+                    className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
+                  >
+                    {page.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

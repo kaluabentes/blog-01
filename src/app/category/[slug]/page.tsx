@@ -1,5 +1,3 @@
-import { notFound } from "next/navigation";
-
 import { PageHeader } from "@/components/page-header";
 import { PostPagination } from "@/components/pagination";
 import { PostList } from "@/components/post-list";
@@ -47,23 +45,53 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   ]);
 
   if (error) throw new Error(error.message);
-  if (!count) notFound();
 
   const categoryName = categoryMap[slug] ?? slug;
 
   return (
     <BlogLayout>
-      <main className="max-w-3xl mx-auto px-4 py-12">
+      <main className="max-w-4xl mx-auto px-4 py-12 w-full">
         <PageHeader
           title={categoryName}
           description={`${count} ${count === 1 ? "post" : "posts"}`}
           backHref="/"
         />
-        <PostList posts={posts ?? []} categoryMap={categoryMap} />
+        <PostList posts={posts ?? []} categoryMap={categoryMap} featured />
+        <PostPagination
+          currentPage={currentPage}
+          totalPages={Math.ceil((count ?? 0) / PER_PAGE)}
+          basePath="/"
+        />
+      </main>
+    </BlogLayout>
+  );
+
+  return (
+    <BlogLayout>
+      <main className="max-w-4xl mx-auto px-4 py-12">
+        <PageHeader
+          title={categoryName}
+          description={`${count} ${count === 1 ? "post" : "posts"}`}
+          backHref="/"
+        />
+        <PostList posts={posts ?? []} categoryMap={categoryMap} featured />
         <PostPagination
           currentPage={currentPage}
           totalPages={Math.ceil((count ?? 0) / PER_PAGE)}
           basePath={`/category/${slug}`}
+        />
+      </main>
+    </BlogLayout>
+  );
+
+  return (
+    <BlogLayout>
+      <main className="max-w-4xl mx-auto px-4 py-12">
+        <PostList posts={posts ?? []} categoryMap={categoryMap} featured />
+        <PostPagination
+          currentPage={currentPage}
+          totalPages={Math.ceil((count ?? 0) / PER_PAGE)}
+          basePath="/"
         />
       </main>
     </BlogLayout>

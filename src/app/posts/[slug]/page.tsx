@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
+import { BackButton } from "@/components/back-button";
 import { CategoryBadge } from "@/components/category-badge";
 import { MarkdownContent } from "@/components/markdown-content";
 import BlogLayout from "@/layouts/blog-layout";
@@ -51,6 +52,7 @@ export default async function PostPage({ params }: Props) {
   return (
     <BlogLayout>
       <main className="w-full max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        <BackButton />
         <header className="mb-6">
           {post.category && (
             <CategoryBadge

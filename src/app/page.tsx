@@ -36,8 +36,8 @@ export default async function HomePage({ searchParams }: Props) {
 
   return (
     <BlogLayout>
-      <main className="max-w-4xl mx-auto px-4 py-12">
-        <PostList posts={posts ?? []} categoryMap={categoryMap} />
+      <main className="max-w-4xl mx-auto px-4 py-12 w-full">
+        <PostList posts={posts ?? []} categoryMap={categoryMap} featured />
         <PostPagination
           currentPage={currentPage}
           totalPages={Math.ceil((count ?? 0) / PER_PAGE)}
