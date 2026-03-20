@@ -13,11 +13,7 @@ export function ShareButton({ title, url }: Props) {
 
   const handleShare = async () => {
     if (navigator.share) {
-      try {
-        await navigator.share({ title, url });
-      } catch (err) {
-        // usuário cancelou — ignora
-      }
+      await navigator.share({ title, url });
     } else {
       await navigator.clipboard.writeText(url);
       setUnsupported(true);
