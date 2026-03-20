@@ -54,7 +54,7 @@ export function Footer({ categories }: Props) {
               {categories.map((cat) => (
                 <li key={cat.slug}>
                   <Link
-                    href={`/categoria/${cat.slug}`}
+                    href={`/category/${cat.slug}`}
                     className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
                   >
                     {cat.name}

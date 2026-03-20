@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/page-header";
 import { PostPagination } from "@/components/pagination";
 import { PostList } from "@/components/post-list";
+import BlogLayout from "@/layouts/blog-layout";
 import { getCategoryMap } from "@/lib/supabase/getCategoryMap";
 import { createClient } from "@/lib/supabase/server";
 
@@ -51,18 +52,20 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const categoryName = categoryMap[slug] ?? slug;
 
   return (
-    <main className="max-w-3xl mx-auto px-4 py-12">
-      <PageHeader
-        title={categoryName}
-        description={`${count} ${count === 1 ? "post" : "posts"}`}
-        backHref="/"
-      />
-      <PostList posts={posts ?? []} categoryMap={categoryMap} />
-      <PostPagination
-        currentPage={currentPage}
-        totalPages={Math.ceil((count ?? 0) / PER_PAGE)}
-        basePath={`/category/${slug}`}
-      />
-    </main>
+    <BlogLayout>
+      <main className="max-w-3xl mx-auto px-4 py-12">
+        <PageHeader
+          title={categoryName}
+          description={`${count} ${count === 1 ? "post" : "posts"}`}
+          backHref="/"
+        />
+        <PostList posts={posts ?? []} categoryMap={categoryMap} />
+        <PostPagination
+          currentPage={currentPage}
+          totalPages={Math.ceil((count ?? 0) / PER_PAGE)}
+          basePath={`/category/${slug}`}
+        />
+      </main>
+    </BlogLayout>
   );
 }

@@ -9,7 +9,7 @@ interface Props {
 export function CategoryBadge({ category, label, className = "" }: Props) {
   return (
     <Link
-      href={`/categoria/${category}`}
+      href={`/category/${category}`}
       className={`text-xs font-medium text-primary hover:underline ${className}`}
     >
       {label ?? category}

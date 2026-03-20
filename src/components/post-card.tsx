@@ -73,7 +73,7 @@ export function PostCard({
             <span
               onClick={(e) => {
                 e.preventDefault();
-                router.push(`/categoria/${post.category}`);
+                router.push(`/category/${post.category}`);
               }}
               className="absolute top-4 left-4 text-[11px] font-semibold px-2 py-0.5 rounded-sm bg-primary text-primary-foreground cursor-pointer hover:opacity-80 transition-opacity"
             >
@@ -125,7 +125,7 @@ export function PostCard({
           <span
             onClick={(e) => {
               e.preventDefault();
-              router.push(`/categoria/${post.category}`);
+              router.push(`/category/${post.category}`);
             }}
             className="absolute top-3 left-3 text-[11px] font-semibold px-2 py-0.5 rounded-sm bg-primary text-primary-foreground cursor-pointer hover:opacity-80 transition-opacity"
           >

@@ -34,7 +34,7 @@ export function Header({ categories }: Props) {
           {categories.map((cat) => (
             <Link
               key={cat.slug}
-              href={`/categoria/${cat.slug}`}
+              href={`/category/${cat.slug}`}
               className="hover:opacity-70 transition-opacity"
             >
               {cat.name}
@@ -61,7 +61,7 @@ export function Header({ categories }: Props) {
             {categories.map((cat) => (
               <Link
                 key={cat.slug}
-                href={`/categoria/${cat.slug}`}
+                href={`/category/${cat.slug}`}
                 onClick={() => setMenuOpen(false)}
                 className="flex items-center justify-between py-4 border-b border-primary-foreground/10 text-sm font-medium hover:opacity-70 transition-opacity"
               >
