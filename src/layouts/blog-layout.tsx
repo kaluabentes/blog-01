@@ -20,10 +20,14 @@ export default async function BlogLayout({
     supabase.from("pages").select("title, slug").order("title"),
   ]);
 
+  const categoryMap = Object.fromEntries(
+    (categories ?? []).map((c) => [c.slug.toLowerCase(), c.name]),
+  );
+
   return (
     <>
-      <Header categories={categories ?? []} />
-      {children}
+      <Header categories={categories ?? []} categoryMap={categoryMap} />
+      <main className="max-w-4xl mx-auto px-4 py-12 w-full">{children}</main>
       <Footer categories={categories ?? []} pages={pages ?? []} />
     </>
   );

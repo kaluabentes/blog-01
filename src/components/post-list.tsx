@@ -1,4 +1,4 @@
-import { Post } from "@/models/Post";
+import { Post } from "@/models/post";
 
 import { PostCard } from "./post-card";
 

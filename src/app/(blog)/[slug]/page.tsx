@@ -41,11 +41,9 @@ export default async function InstitutionalPage({ params }: Props) {
   if (!page || error) notFound();
 
   return (
-    <BlogLayout>
-      <main className="max-w-2xl mx-auto px-4 py-12">
-        <PageHeader title={page.title} backButton />
-        <MarkdownContent content={page.content} />
-      </main>
-    </BlogLayout>
+    <div className="max-w-2xl mx-auto w-full">
+      <PageHeader title={page.title} backButton />
+      <MarkdownContent content={page.content} />
+    </div>
   );
 }

@@ -14,7 +14,7 @@ export function PageHeader({
   backButton,
 }: Props) {
   return (
-    <div className="mb-10 mt-4">
+    <div className="mb-10">
       {backButton && <BackButton backHref={backHref} />}
       <h1 className="text-3xl font-semibold  capitalize text-foreground">
         {title}
