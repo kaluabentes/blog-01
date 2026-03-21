@@ -5,8 +5,6 @@ export async function getCategoryMap(): Promise<Record<string, string>> {
 
   const { data } = await supabase.from("categories").select("slug, name");
 
-  console.log("categories do banco:", data);
-
   return Object.fromEntries(
     (data ?? []).map((c) => [c.slug.toLowerCase(), c.name]),
   );

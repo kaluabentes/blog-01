@@ -49,7 +49,7 @@ export function PostCard({
               src={post.image}
               alt={post.title ?? ""}
               fill
-              sizes="100vw"
+              sizes="(max-width: 896px) 100vw, 896px"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               priority={priority}
             />
@@ -105,7 +105,7 @@ export function PostCard({
             src={post.image}
             alt={post.title ?? ""}
             fill
-            sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 896px) 50vw, 448px"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             priority={priority}
           />

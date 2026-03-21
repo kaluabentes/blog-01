@@ -121,7 +121,7 @@ export default async function PostPage({ params }: Props) {
             src={post.image}
             alt={post.title ?? ""}
             fill
-            sizes="(max-width: 640px) 100vw, 672px"
+            sizes="(max-width: 672px) 100vw, 672px"
             className="object-cover rounded-xl"
             priority
           />

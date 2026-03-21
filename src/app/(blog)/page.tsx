@@ -3,7 +3,7 @@ import { PostList } from "@/components/post-list";
 import { getCategoryMap } from "@/lib/supabase/get-category-map";
 import { createClient } from "@/lib/supabase/server";
 
-const PER_PAGE = 6;
+const PER_PAGE = 8;
 
 interface Props {
   searchParams: Promise<{ page?: string }>;
@@ -35,7 +35,11 @@ export default async function HomePage({ searchParams }: Props) {
 
   return (
     <>
-      <PostList posts={posts ?? []} categoryMap={categoryMap} featured />
+      <PostList
+        posts={posts ?? []}
+        categoryMap={categoryMap}
+        featured={currentPage === 1}
+      />
       <PostPagination
         currentPage={currentPage}
         totalPages={Math.ceil((count ?? 0) / PER_PAGE)}
