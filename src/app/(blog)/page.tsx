@@ -21,7 +21,7 @@ export default async function HomePage({ searchParams }: Props) {
     supabase
       .from("posts")
       .select(
-        "id, title, slug, meta_description, image, category, created_at",
+        "id, title, title_discover, slug, meta_description, image, category, created_at",
         {
           count: "exact",
         },
