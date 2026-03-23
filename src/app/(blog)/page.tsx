@@ -35,11 +35,7 @@ export default async function HomePage({ searchParams }: Props) {
 
   return (
     <>
-      <PostList
-        posts={posts ?? []}
-        categoryMap={categoryMap}
-        featured={currentPage === 1}
-      />
+      <PostList posts={posts ?? []} categoryMap={categoryMap} featured />
       <PostPagination
         currentPage={currentPage}
         totalPages={Math.ceil((count ?? 0) / PER_PAGE)}
