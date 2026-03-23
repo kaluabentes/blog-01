@@ -3,7 +3,7 @@ import { PostList } from "@/components/post-list";
 import { getCategoryMap } from "@/lib/supabase/get-category-map";
 import { createClient } from "@/lib/supabase/server";
 
-const PER_PAGE = 8;
+const PER_PAGE = 9;
 
 interface Props {
   searchParams: Promise<{ page?: string }>;

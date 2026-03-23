@@ -5,7 +5,7 @@ import { CATEGORY_TAGLINE, NAME } from "@/config/general";
 import { getCategoryMap } from "@/lib/supabase/get-category-map";
 import { createClient } from "@/lib/supabase/server";
 
-const PER_PAGE = 12;
+const PER_PAGE = 13;
 
 interface Props {
   params: Promise<{ slug: string }>;
