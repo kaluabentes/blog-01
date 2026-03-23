@@ -31,7 +31,11 @@ export function Header({ categories, categoryMap }: Props) {
     <>
       <header className="bg-primary text-primary-foreground sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
-          <button className="xl:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+          <button
+            className="xl:hidden"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+          >
             {menuOpen ? (
               <X className="w-5 h-5" />
             ) : (
