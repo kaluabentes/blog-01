@@ -76,7 +76,7 @@ export function PostCard({
           {/* Content over gradient */}
           <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
             <h2 className="text-xl md:text-3xl font-bold text-white leading-snug mb-2">
-              {post.title}
+              {post.title_discover ?? post.title}
             </h2>
             {post.meta_description && (
               <p className="text-sm text-white/70 line-clamp-2 mb-3 hidden md:block">
@@ -130,7 +130,7 @@ export function PostCard({
 
       <Link href={`/posts/${post.slug}`}>
         <h2 className="text-sm font-semibold text-foreground leading-snug">
-          {post.title}
+          {post.title_discover ?? post.title}
         </h2>
       </Link>
     </article>

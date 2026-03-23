@@ -1,6 +1,7 @@
 export interface Post {
   id?: number;
   title: string | null;
+  title_discover?: string | null;
   slug?: string | null;
   content?: string;
   meta_description: string | null;
