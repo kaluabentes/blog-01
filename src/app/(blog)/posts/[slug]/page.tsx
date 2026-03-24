@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props) {
 
   const { data: post } = await supabase
     .from("posts")
-    .select("title, title_discover, meta_description, image")
+    .select("title, title_discover, meta_description, image, slug")
     .eq("slug", slug)
     .single();
 

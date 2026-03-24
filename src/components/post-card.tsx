@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import { cloudinaryLoader } from "@/lib/cloudinary/cloudinaryLoader";
 import { Post } from "@/models/post";
 
 interface Props {
@@ -46,12 +47,14 @@ export function PostCard({
           {/* Image */}
           {post.image ? (
             <Image
-              src={post.image}
+              loader={cloudinaryLoader}
+              src={`${post.slug}.jpg`}
               alt={post.title ?? ""}
               fill
               sizes="(max-width: 896px) 100vw, 896px"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
-              priority={priority}
+              priority
+              quality={80}
             />
           ) : (
             <div className="w-full h-full bg-muted" />
@@ -102,7 +105,8 @@ export function PostCard({
       >
         {post.image ? (
           <Image
-            src={post.image}
+            loader={cloudinaryLoader}
+            src={`${post.slug}.jpg`}
             alt={post.title ?? ""}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 896px) 50vw, 448px"

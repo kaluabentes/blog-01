@@ -1,5 +1,4 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google";
-import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 import { cn } from "@/lib/utils";
@@ -9,12 +8,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -42,12 +36,15 @@ export default function RootLayout({
         inter.variable,
       )}
     >
+      <head>
+        {/* Adicionando o script do AdSense manualmente */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9602048626265408"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
-      <Script
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9602048626265408"
-        crossOrigin="anonymous"
-        strategy="afterInteractive"
-      />
       <GoogleAnalytics gaId="G-P93LDMFZ86" />
     </html>
   );

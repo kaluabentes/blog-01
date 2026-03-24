@@ -7,6 +7,7 @@ import { CategoryBadge } from "@/components/category-badge";
 import { MarkdownContent } from "@/components/markdown-content";
 import { PostCard } from "@/components/post-card";
 import { ShareButton } from "@/components/share-button";
+import { cloudinaryLoader } from "@/lib/cloudinary/cloudinaryLoader";
 import { Post } from "@/models/post";
 
 interface Props {
@@ -62,12 +63,14 @@ export function PostView({ post, relatedPosts, categoryMap, postUrl }: Props) {
       {post.image && (
         <div className="relative w-full h-52 sm:h-72 mb-8">
           <Image
-            src={post.image}
+            loader={cloudinaryLoader}
+            src={`${post.slug}.jpg`}
             alt={post.title ?? ""}
             fill
             sizes="(max-width: 672px) 100vw, 672px"
             className="object-cover rounded-xl"
             priority
+            quality={80}
           />
         </div>
       )}

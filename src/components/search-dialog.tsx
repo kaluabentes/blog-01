@@ -7,6 +7,7 @@ import { Loader2, Search, X } from "lucide-react";
 
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useDebounce } from "@/hooks/use-debounce";
+import { cloudinaryLoader } from "@/lib/cloudinary/cloudinaryLoader";
 import { createClient } from "@/lib/supabase/client";
 
 interface Result {
@@ -145,7 +146,8 @@ export function SearchDialog({ open, onClose, categoryMap }: Props) {
                     {post.image ? (
                       <div className="relative w-12 h-12 shrink-0 rounded-md overflow-hidden bg-muted">
                         <Image
-                          src={post.image}
+                          loader={cloudinaryLoader}
+                          src={`${post.slug}.jpg`}
                           alt={post.title ?? ""}
                           fill
                           sizes="48px"
