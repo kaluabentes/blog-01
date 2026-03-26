@@ -55,6 +55,7 @@ export function PostCard({
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               priority
               quality={80}
+              fetchPriority="high"
             />
           ) : (
             <div className="w-full h-full bg-muted" />

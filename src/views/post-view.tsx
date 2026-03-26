@@ -71,6 +71,7 @@ export function PostView({ post, relatedPosts, categoryMap, postUrl }: Props) {
             className="object-cover rounded-xl"
             priority
             quality={80}
+            fetchPriority="high"
           />
         </div>
       )}
