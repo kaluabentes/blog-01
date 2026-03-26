@@ -51,7 +51,9 @@ export default async function PostPage({ params }: Props) {
   const [{ data: post, error }, categoryMap] = await Promise.all([
     supabase
       .from("posts")
-      .select("title, content, image, category, created_at, meta_description")
+      .select(
+        "title, slug, content, image, category, created_at, meta_description",
+      )
       .eq("slug", slug)
       .single(),
     getCategoryMap(),
