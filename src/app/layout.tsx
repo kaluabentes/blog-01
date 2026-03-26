@@ -38,11 +38,11 @@ export default function RootLayout({
       )}
     >
       <head>
-        <Script
+        <script
           async
+          defer
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9602048626265408"
           crossOrigin="anonymous"
-          strategy="lazyOnload"
         />
       </head>
       <body className="min-h-full flex flex-col">{children}</body>
