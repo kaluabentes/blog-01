@@ -8,6 +8,10 @@
     "start": "next start",
     "lint": "eslint"
   },
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ],
   "dependencies": {
     "@next/third-parties": "^16.2.1",
     "@supabase/ssr": "^0.9.0",

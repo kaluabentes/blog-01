@@ -54,7 +54,7 @@ export function PostCard({
               sizes="(max-width: 896px) 100vw, 896px"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               priority
-              quality={80}
+              quality={75}
               fetchPriority="high"
             />
           ) : (
